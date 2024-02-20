@@ -8,6 +8,7 @@ import 'package:movieapp/features/home/bloc/home_state.dart';
 import 'package:movieapp/features/home/data/home_respository.dart';
 import 'package:movieapp/features/home/models/movie_model.dart';
 import 'package:movieapp/features/home/widgets/custom_title.dart';
+import 'package:movieapp/features/home/widgets/movie_list.dart';
 import 'package:movieapp/features/home/widgets/movie_slider.dart';
 import 'package:movieapp/utils/constant_value.dart';
 
@@ -76,7 +77,17 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                         CustomTitle(
                             title: StringConstant.popular,
                             moviesList: popularMovie),
-                        MovieSlider(movieData: popularMovie),
+                        MovieList(movieList: popularMovie),
+                        CustomTitle(
+                            title: StringConstant.trendingMovies,
+                            moviesList: trendingMovie),
+                        MovieList(movieList: trendingMovie),
+                        CustomTitle(
+                            title: StringConstant.upComing,
+                            moviesList: upcomingMovie),
+                        MovieList(
+                          movieList: upcomingMovie,
+                        ),
                       ],
                     ),
                   ),

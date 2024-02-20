@@ -33,7 +33,6 @@ class MovieSlider extends StatelessWidget {
                     height: 300,
                     width: 200,
                     child: CachedNetworkImage(
-                      maxWidthDiskCache: 2000,
                       imageUrl:
                           '${ApiUrls.imageBaseUrl}${movieData[itemIndex].posterPath}',
                       progressIndicatorBuilder:
@@ -41,7 +40,7 @@ class MovieSlider extends StatelessWidget {
                         width: 12.w,
                         height: 40.h,
                         highlightColor: const Color(0xff22272f),
-                        baseColor: const Color(0xff20252d),
+                        baseColor: Colors.grey.shade900,
                       ),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
