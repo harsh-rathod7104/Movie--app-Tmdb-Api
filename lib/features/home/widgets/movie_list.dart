@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fade_shimmer/fade_shimmer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movieapp/features/details/screens/details_screen.dart';
 import 'package:movieapp/features/home/models/movie_model.dart';
 import 'package:movieapp/utils/api_base.dart';
 
@@ -21,26 +23,35 @@ class MovieList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4.r),
-              child: SizedBox(
-                height: 80.h,
-                width: 120.w,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      '${ApiUrls.imageBaseUrl}${movieList[index].posterPath}',
-                  progressIndicatorBuilder: (context, url, downloadProgress) {
-                    return FadeShimmer(
-                      width: 12.w,
-                      height: 40.h,
-                      highlightColor: const Color(0xff22272f),
-                      baseColor: const Color(0xff20252d),
-                    );
-                  },
-                  errorWidget: (context, url, error) {
-                    return const Icon(Icons.error);
-                  },
-                  fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) =>
+                            DetailsScreen(movie: movieList[index])));
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4.r),
+                child: SizedBox(
+                  height: 80.h,
+                  width: 120.w,
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        '${ApiUrls.imageBaseUrl}${movieList[index].posterPath}',
+                    progressIndicatorBuilder: (context, url, downloadProgress) {
+                      return FadeShimmer(
+                        width: 12.w,
+                        height: 40.h,
+                        highlightColor: const Color(0xff22272f),
+                        baseColor: const Color(0xff20252d),
+                      );
+                    },
+                    errorWidget: (context, url, error) {
+                      return const Icon(Icons.error);
+                    },
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
