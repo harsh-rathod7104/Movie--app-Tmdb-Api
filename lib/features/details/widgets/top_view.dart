@@ -12,28 +12,24 @@ class TopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100.h,
+      height: 310.h,
       child: Stack(
         children: [
           SizedBox(
-            height: 90.h,
+            height: 260.h,
             width: double.infinity,
             child: CachedNetworkImage(
-              imageUrl: '${ApiUrls.imageBaseUrl}${movie.backDropPath}',
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  FadeShimmer(
-                width: 50.w,
-                height: 100.h,
-                highlightColor: const Color(0xff22272f),
-                baseColor: const Color(0xff20252d),
-              ),
+              imageUrl: ApiUrls.imageBaseUrl + movie.backDropPath,
+              progressIndicatorBuilder: (context, url, downloadProgress) {
+                return Center(child: CircularProgressIndicator());
+              },
               errorWidget: (context, url, error) => const Icon(Icons.error),
               fit: BoxFit.cover,
             ),
           ),
           Positioned(
-            top: 4.h,
-            left: 5.w,
+            top: 15.h,
+            left: 16.w,
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
@@ -41,12 +37,12 @@ class TopView extends StatelessWidget {
               child: Opacity(
                 opacity: 0.8,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: const Color(0xff22272f),
+                    color: Colors.grey.shade900,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.sp),
+                    padding: EdgeInsets.all(7.sp),
                     child: const Icon(
                       Icons.arrow_back_sharp,
                       color: Colors.white,
@@ -57,19 +53,19 @@ class TopView extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 26.h,
-            left: 5.w,
+            left: 20.w,
+            top: 180.h,
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  border: Border.all(strokeAlign: 2.sp, color: Colors.white)),
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+              ),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: SizedBox(
-                    height: 20.h,
-                    width: 30.w,
+                    height: 130.h,
+                    width: 100.w,
                     child: CachedNetworkImage(
                       imageUrl: ApiUrls.imageBaseUrl + movie.posterPath,
                       progressIndicatorBuilder:
@@ -84,36 +80,6 @@ class TopView extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 42.h,
-            right: 3.w,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13.sp),
-                  color: Colors.white54),
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 15.sp, vertical: 3.sp),
-                child: Row(
-                  children: [
-                    SizedBox(height: 4.h, width: 4.w, child: Icon(Icons.star)),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Text(
-                      movie.voteAverage == 0.0
-                          ? 'N/A'
-                          : movie.voteAverage.toStringAsFixed(2),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ),
