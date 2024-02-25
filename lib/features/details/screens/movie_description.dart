@@ -11,7 +11,7 @@ class MovieDescription extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Row(
             children: [
               Expanded(
@@ -29,12 +29,14 @@ class MovieDescription extends StatelessWidget {
               ),
               Row(
                 children: [
+                  const SizedBox(
+                    child: Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
                   SizedBox(
-                      height: 5.h,
-                      width: 5.w,
-                      child: Icon(Icons.calendar_month)),
-                  SizedBox(
-                    width: 2.w,
+                    width: 5.w,
                   ),
                   Text(
                     movie.releaseDate.split('-')[0],
@@ -50,16 +52,16 @@ class MovieDescription extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 3.h,
+          height: 20.h,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
             movie.overview,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w400,
-              color: Colors.white,
+              color: Colors.white.withOpacity(0.6),
             ),
           ),
         ),

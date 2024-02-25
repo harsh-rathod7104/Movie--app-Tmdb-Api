@@ -12,7 +12,7 @@ class TopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 310.h,
+      height: 340.h,
       child: Stack(
         children: [
           SizedBox(
@@ -21,7 +21,7 @@ class TopView extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: ApiUrls.imageBaseUrl + movie.backDropPath,
               progressIndicatorBuilder: (context, url, downloadProgress) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               },
               errorWidget: (context, url, error) => const Icon(Icons.error),
               fit: BoxFit.cover,
@@ -54,10 +54,11 @@ class TopView extends StatelessWidget {
           ),
           Positioned(
             left: 20.w,
-            top: 180.h,
+            top: 175.h,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                border: Border.all(width: 1, color: Colors.white),
+                borderRadius: BorderRadius.all(Radius.circular(16.r)),
               ),
               child: Align(
                 alignment: Alignment.bottomLeft,
@@ -84,6 +85,34 @@ class TopView extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+              top: 270.h,
+              right: 10.w,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      child: Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      movie.voteAverage == 0.0
+                          ? "N/A"
+                          : movie.voteAverage.toStringAsFixed(2),
+                    )
+                  ],
+                ),
+              ))
         ],
       ),
     );

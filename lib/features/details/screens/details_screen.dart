@@ -16,7 +16,7 @@ class DetailsScreen extends StatelessWidget {
         child: Column(
           children: [
             TopView(movie: movie),
-            // MovieDescription(movie: movie),
+            MovieDescription(movie: movie),
           ],
         ),
       ),
